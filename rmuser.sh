@@ -9,6 +9,6 @@ if [ -z "$VPN_USER" ]; then
 fi
 
 cp /usr/local/etc/ipsec.secrets /usr/local/etc/ipsec.secrets.bak
-sed "/$VPN_USER :/d" /usr/local/etc/ipsec.secrets.bak > /usr/local/etc/ipsec.secrets
+sed "/$VPN_USER :/d" /usr/local/etc/ipsec.secrets.bak > /usr/local/etc/ipsec.secrets # удаляем строку и с пользователем из файла /usr/local/etc/ipsec.secrets
 
 ipsec rereadsecrets

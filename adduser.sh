@@ -15,10 +15,10 @@ case "$VPN_USER" in
     ;;
 esac
 
-VPN_PASSWORD="$(openssl rand -base64 9)"
+VPN_PASSWORD="$2" #генерируем пароль для пользователя
 HOST="$(printenv VPNHOST)"
 
 echo "Password for user is: $VPN_PASSWORD"
-echo $VPN_USER : EAP \"$VPN_PASSWORD\">> /usr/local/etc/ipsec.secrets
+echo $VPN_USER : EAP \"$VPN_PASSWORD\">> /usr/local/etc/ipsec.secrets # сохраняем имя пользователя и пароль в файл /usr/local/etc/ipsec.secrets
 
 ipsec rereadsecrets

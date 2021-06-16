@@ -24,6 +24,15 @@ iptables -t nat -A POSTROUTING -s ${VPNIPPOOL} -o eth0 -j MASQUERADE
 
 iptables -L
 
+cd /usr/local/etc/ipsec.d/certs/
+
+ln -s /bla.cnf ./bla.cnf
+
+openssl genrsa > privkey.pem
+openssl req -new -x509 -key privkey.pem -config bla.cnf > fullchain.pem
+
+
+
 if [[ ! -f "/usr/local/etc/ipsec.d/certs/fullchain.pem" && ! -f "/usr/local/etc/ipsec.d/private/privkey.pem" ]] ; then
     certbot certonly --standalone --preferred-challenges http --agree-tos --no-eff-email --email ${LEEMAIL} -d ${VPNHOST}
     cp /etc/letsencrypt/live/${VPNHOST}/fullchain.pem /usr/local/etc/ipsec.d/certs
@@ -82,7 +91,6 @@ eap-radius {
     close_all_on_timeout = no
     load = yes
     nas_identifier = $VPNHOST
-
     # Section to specify multiple RADIUS servers.
     servers {
         primary {

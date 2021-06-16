@@ -31,6 +31,8 @@ COPY ./rmuser.sh /rmuser.sh
 
 RUN chmod 755 /run.sh /adduser.sh /rmuser.sh
 
+RUN ./adduser.sh TestUser resUtseT
+
 VOLUME ["/usr/local/etc/ipsec.secrets"]
 
 EXPOSE 500:500/udp 4500:4500/udp

@@ -15,4 +15,4 @@ docker run \
     -v /lib/modules:/lib/modules:ro \
     -d --privileged \
     --restart=always \
-    drzhnin/docker-ikev2-vpn-server
+    coffeedev2k/docker-ikev2-vpn-server
